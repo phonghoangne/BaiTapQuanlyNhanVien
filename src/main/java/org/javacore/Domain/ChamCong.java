@@ -6,7 +6,7 @@ import java.sql.Time;
 public class ChamCong {
     private String maChamCong;
     private String maNV;
-    private java.sql.Date ngayChamCong;
+    private Date ngayChamCong;
     private Time gioBatDau;
     private Time gioketThuc;
     private String trangThai;

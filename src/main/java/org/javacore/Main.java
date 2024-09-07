@@ -1,19 +1,33 @@
 package org.javacore;
 
+import org.javacore.DAO.DAOImpl.LuongServiceImpl;
+import org.javacore.DAO.DAOImpl.ViewServiceImpl;
+import org.javacore.DAO.LuongService;
+import org.javacore.DAO.ViewService;
+import org.javacore.Domain.LichSuLamViecV;
+import org.javacore.Domain.NhanVienCVView;
+
+import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
+        LuongService luongService = new LuongServiceImpl();
+        ViewService viewService = new ViewServiceImpl();
         boolean  exit = false;
+        Scanner scanner = new Scanner(System.in);
+
         while(!exit){
             System.out.println("\n --- MENU----");
             System.out.println("1. Tính lương trung bình của nhân viên ");
             System.out.println("2. Đếm số lượng nhân viên theo chức vụ ");
             System.out.println("3. Xác định nhân viên có mức lương cao nhất và thấp nhất ");
-            System.out.println("4. Thống kê lịch sử lamf việc của nhân viên ");
+            System.out.println("4. Thống kê lịch sử làm việc của nhân viên ");
             System.out.println("5. Thông tin nhân viên lớn tuổi nhất công ty ");
             System.out.println("6. Thông tin nhân viên làm việc lâu năm nhất ");
             System.out.println("7. Thêm bảng awards(id,nhanvien_id,type (varchar)) ");
@@ -30,21 +44,34 @@ public class Main {
             System.out.println("16 : Thoát !!");
             System.out.println("Vui lòng chọn từ 1-15!!!!!");
             int choice = scanner.nextInt();
-            scanner.nextLine();
+//            scanner.nextLine();
             switch(choice){
                 case 1 :
+                    System.out.println(luongService.AvgSalary());
                     break;
                 case 2 :
+                    List<NhanVienCVView> listCountNV = viewService.countNhanVienGroupCV();
+                    for (NhanVienCVView item : listCountNV)
+                    {
+                        System.out.println(item.toString());
+                    }
                     break;
                 case 3 :
+                    System.out.println("nhan vien luong cao nhat : "+viewService.luongMax());
+                    System.out.println("nhan vien luong thap nhat : "+ viewService.luongMin());
                     break;
                 case 4 :
+                    List<LichSuLamViecV> lichSuLamViecVS = viewService.lichSuLamViecAll();
+                    for (LichSuLamViecV item : lichSuLamViecVS){
+                        System.out.println(item.toString());
+                    }
                     break;
                 case 5 :
                     break;
                 case 6 :
                     break;
                 case 7 :
+                    viewService.createTableAward();
                     break;
                 case 8 :
                     break;
@@ -69,8 +96,8 @@ public class Main {
                 default :
                     System.out.println("Lựa chọn không hợp lệ, vui lòng chọn lại .");
             }
-            scanner.close();
         }
+        scanner.close();
 
     }
 }
