@@ -17,7 +17,7 @@ public class TongSoGioLamViecV {
 
     @Override
     public String toString() {
-        return "TongSoGioLamViecV{" +
+        return "TongSoGioLamViec{" +
                 "tongSoGioLamViec=" + tongSoGioLamViec +
                 '}';
     }

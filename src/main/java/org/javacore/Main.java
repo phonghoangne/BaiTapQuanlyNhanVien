@@ -1,12 +1,11 @@
 package org.javacore;
 
-import org.javacore.DAO.DAOImpl.LuongServiceImpl;
-import org.javacore.DAO.DAOImpl.ViewServiceImpl;
-import org.javacore.DAO.LuongService;
-import org.javacore.DAO.ViewService;
+import org.javacore.DAO.*;
+import org.javacore.DAO.DAOImpl.*;
 import org.javacore.Domain.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -18,9 +17,11 @@ public class Main {
 
         LuongService luongService = new LuongServiceImpl();
         ViewService viewService = new ViewServiceImpl();
-        NhanVien nhanVien = new NhanVien();
+        NhanVienService nhanVienService= new NhanVienServiceImpl();
         boolean  exit = false;
         Scanner scanner = new Scanner(System.in);
+        ChamCongService chamCongService = new ChamCongServiceImpl();
+        PhepService phepService = new PhepServiceImpl();
 
         while(!exit){
             System.out.println("\n --- MENU----");
@@ -45,6 +46,7 @@ public class Main {
             System.out.println("Vui lòng chọn từ 1-15!!!!!");
             int choice = scanner.nextInt();
 //            scanner.nextLine();
+
             switch(choice){
                 case 1 :
                     System.out.println(luongService.AvgSalary());
@@ -67,7 +69,7 @@ public class Main {
                     }
                     break;
                 case 5 :
-                    System.out.println(viewService.nhanVienLonTuoiNhat());
+                    System.out.println(viewService.nhanVienLonTuoiNhat());// *
                     break;
                 case 6 :
                     System.out.println(viewService.nhanVienLamViecLauNhat());
@@ -76,6 +78,23 @@ public class Main {
                     viewService.createTableAward();
                     break;
                 case 8 :
+                    System.out.println("-----");
+                    System.out.println("luong truoc apply voucher");
+                    List<Luong> luongAll = luongService.read();
+                    for (Luong item : luongAll )
+                    {
+                        System.out.println(item.toString());
+                    }
+                    Map<String,Double> dataVoucher = nhanVienService.applyVouCherChoNhanVien();
+
+                    luongService.UpdateAllLuong(dataVoucher);
+                    System.out.println("-----");
+                    System.out.println("luong sau apply voucher");
+                    luongAll = luongService.read();
+                    for (Luong item : luongAll )
+                    {
+                        System.out.println(item.toString());
+                    }
 
                     break;
                 case 9 : List<ChamCongGioLamV> chamCong = viewService.gioLamTrungBinh();
@@ -84,17 +103,40 @@ public class Main {
                     }
                     break;
                 case 10 :
-                    System.out.println("Tong so gio lam viec cua tat ca nhan vien trong 1 thang : "+ viewService.TongSoGioLamViec() );
+                    System.out.println("Nhap nam thang co dinh dang yyyy-mm ");
+                    Scanner sc = new Scanner(System.in);
+                    String namThang = sc.nextLine();
+                    System.out.println("Tong so gio lam viec cua tat ca nhan vien trong 1 thang : "+ viewService.TongSoGioLamViec(namThang) );
                     break;
                 case 11 :
+                    ChamCong muonNhat = chamCongService.timNhanVienMuonNhat();
+                    Luong truLuong = luongService.timLuongTheoMaNV(muonNhat.getMaNV());
+                    luongService.UpdateLuong(truLuong.getMaNV(),truLuong.getMucLuong() - 500000);
                     break;
                 case 12 :
+                    ChamCong somNhat = chamCongService.timNhanVienSomNhat();
+                    Luong congLuong = luongService.timLuongTheoMaNV(somNhat.getMaNV());
+                    luongService.UpdateLuong(somNhat.getMaNV(),congLuong.getMucLuong() + 500000);
                     break;
                 case 13 :
+                    System.out.println("so ngay phep duoc phe duyet cho cac nhan vien");
+                    Map<String,Integer> ngayPhepget=   phepService.layNgayPhepDuocDuyetTheoMaNV();
+                    for(Map.Entry<String, Integer> entry : ngayPhepget.entrySet())
+                    {
+                        NhanVien nvNghi = nhanVienService.timKiemTheoMaNV(entry.getKey());
+                        String LydoNghi =  phepService.lyDoNghi(nvNghi.getMaNhanVien());
+                        System.out.println(nvNghi.toString() + " - Lý do: "+LydoNghi );
+                    }
                     break;
                 case 14 :
+                    phepService.tongSongayNghir();
                     break;
                 case 15 :
+                  Map<String,Integer>data=  phepService.nhanVienOffNhieuNhat();
+                    for(Map.Entry<String, Integer> entry : data.entrySet())
+                    {
+                        System.out.println("NHan Vien Nghi nhieu Nhat: "+nhanVienService.timKiemTheoMaNV(entry.getKey()) + " nghi "+entry.getValue() + "ngay");
+                    }
                     break;
                 case 16 :
                     System.out.println("Cảm ơn bạn đã sử dụng ứng dụng quản lý nhân viên !!");

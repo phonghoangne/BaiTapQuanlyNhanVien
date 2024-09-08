@@ -4,15 +4,28 @@ import java.sql.Date;
 
 public class Luong {
     private String maNV;
-    private String mucLuong;
+    private Double mucLuong;
     private Date ngayBatDau;
     private Date ngayKetThuc;
 
-    public Luong(String maNV, String mucLuong, Date ngayBatDau, Date ngayKetThuc) {
+    private String applyVoucher;
+    public Luong() {
+    }
+
+    public Luong(String maNV, Double mucLuong, Date ngayBatDau, Date ngayKetThuc,String applyVoucher) {
         this.maNV = maNV;
         this.mucLuong = mucLuong;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
+        this.applyVoucher = applyVoucher;
+    }
+
+    public String getApplyVoucher() {
+        return applyVoucher;
+    }
+
+    public void setApplyVoucher(String applyVoucher) {
+        this.applyVoucher = applyVoucher;
     }
 
     public String getMaNV() {
@@ -23,11 +36,11 @@ public class Luong {
         this.maNV = maNV;
     }
 
-    public String getMucLuong() {
+    public Double getMucLuong() {
         return mucLuong;
     }
 
-    public void setMucLuong(String mucLuong) {
+    public void setMucLuong(Double mucLuong) {
         this.mucLuong = mucLuong;
     }
 

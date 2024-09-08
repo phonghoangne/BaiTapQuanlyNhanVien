@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ViewServiceImpl implements ViewService {
     StringBuilder sql ;
@@ -209,21 +210,19 @@ public class ViewServiceImpl implements ViewService {
     }
 
     @Override
-    public TongSoGioLamViecV TongSoGioLamViec() {
+    public TongSoGioLamViecV TongSoGioLamViec(String namThang) {
         TongSoGioLamViecV chamCong = new TongSoGioLamViecV();
-        sql = new StringBuilder("select sum(SoGioLamViec) as TongSoGioLamViec from ChamCong where NgayChamCong between '2023-08-01' and '2023-08-31';");
+
+        sql = new StringBuilder("select sum(SoGioLamViec) as TongSoGioLamViec from ChamCong where DATE_FORMAT(NgayChamCong,'%Y-%m') = ? ;");
         try{
             conn = Ultils.getConnection();
             preparedStatement = conn.prepareStatement(sql.toString());
+            preparedStatement.setString(1,namThang);
             rs = preparedStatement.executeQuery();
             if(rs.next()){
                 double tongSoGioLamViec =rs.getDouble("TongSoGioLamViec") ;
                 chamCong.setTongSoGioLamViec(tongSoGioLamViec);
             }else{chamCong.setTongSoGioLamViec(0);}
-
-
-
-
 
         }catch(Exception e){
             throw  new QLNVExceptionException(e.getMessage());
@@ -232,5 +231,7 @@ public class ViewServiceImpl implements ViewService {
 
 
     }
+
+
 
 }

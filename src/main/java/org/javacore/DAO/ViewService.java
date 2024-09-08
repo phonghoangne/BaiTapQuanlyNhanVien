@@ -3,6 +3,7 @@ package org.javacore.DAO;
 import org.javacore.Domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ViewService {
     // nhung model view chi de doc khong dung de insert update delete
@@ -20,5 +21,8 @@ public interface ViewService {
     NhanVien nhanVienLonTuoiNhat();
     NhanVien nhanVienLamViecLauNhat();
     List<ChamCongGioLamV> gioLamTrungBinh();
-    TongSoGioLamViecV TongSoGioLamViec();
+    TongSoGioLamViecV TongSoGioLamViec(String namThang);
+
+
+
 }

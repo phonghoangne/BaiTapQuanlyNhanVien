@@ -11,8 +11,9 @@ public class NhanVien {
     private String maPB;
     private String maCV;
     private Date ngayBatDau;
+    private String applyVoucher;
 
-    public NhanVien(String maNhanVien, String hoTen, String soDienThoai, Date ngaySinh, String diaChi, String maPB, String maCV, Date ngayBatDau) {
+    public NhanVien(String maNhanVien, String hoTen, String soDienThoai, Date ngaySinh, String diaChi, String maPB, String maCV, Date ngayBatDau, String applyVoucher) {
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
         this.soDienThoai = soDienThoai;
@@ -21,6 +22,7 @@ public class NhanVien {
         this.maPB = maPB;
         this.maCV = maCV;
         this.ngayBatDau = ngayBatDau;
+        this.applyVoucher = applyVoucher;
     }
 
     public NhanVien() {
@@ -89,6 +91,14 @@ public class NhanVien {
 
     public void setNgayBatDau(Date ngayBatDau) {
         this.ngayBatDau = ngayBatDau;
+    }
+
+    public String getApplyVoucher() {
+        return applyVoucher;
+    }
+
+    public void setApplyVoucher(String applyVoucher) {
+        this.applyVoucher = applyVoucher;
     }
 
     @Override

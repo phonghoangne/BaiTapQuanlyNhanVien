@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class Ultils {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/baitapjdbc2";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/qlnv";
     private static final String JDBC_USER = "root";
-    private static final String JDBC_PASSWORD = "1234";
+    private static final String JDBC_PASSWORD = "root123";
 
        private static String pattern = "MM-dd-yyyy";
     // cai de dki driver voi DriverManageger
