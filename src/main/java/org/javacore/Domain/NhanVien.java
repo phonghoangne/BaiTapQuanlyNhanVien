@@ -6,11 +6,11 @@ public class NhanVien {
     private String maNhanVien;
     private String hoTen;
     private String soDienThoai;
-    private java.sql.Date ngaySinh;
+    private Date ngaySinh;
     private String diaChi;
     private String maPB;
     private String maCV;
-    private java.sql.Date ngayBatDau;
+    private Date ngayBatDau;
 
     public NhanVien(String maNhanVien, String hoTen, String soDienThoai, Date ngaySinh, String diaChi, String maPB, String maCV, Date ngayBatDau) {
         this.maNhanVien = maNhanVien;
@@ -21,6 +21,10 @@ public class NhanVien {
         this.maPB = maPB;
         this.maCV = maCV;
         this.ngayBatDau = ngayBatDau;
+    }
+
+    public NhanVien() {
+
     }
 
     public String getMaNhanVien() {

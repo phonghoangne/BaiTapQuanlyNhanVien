@@ -6,18 +6,24 @@ import java.sql.Time;
 public class ChamCong {
     private String maChamCong;
     private String maNV;
-    private java.sql.Date ngayChamCong;
+    private Date ngayChamCong;
     private Time gioBatDau;
     private Time gioketThuc;
+    private double soGioLamViec;
     private String trangThai;
 
-    public ChamCong(String maChamCong, String maNV, Date ngayChamCong, Time gioBatDau, Time gioketThuc, String trangThai) {
+    public ChamCong(String maChamCong, String maNV, Date ngayChamCong, Time gioBatDau, Time gioketThuc, double soGioLamViec, String trangThai) {
         this.maChamCong = maChamCong;
         this.maNV = maNV;
         this.ngayChamCong = ngayChamCong;
         this.gioBatDau = gioBatDau;
         this.gioketThuc = gioketThuc;
+        this.soGioLamViec = soGioLamViec;
         this.trangThai = trangThai;
+    }
+
+    public ChamCong() {
+
     }
 
     public String getMaChamCong() {
@@ -60,6 +66,14 @@ public class ChamCong {
         this.gioketThuc = gioketThuc;
     }
 
+    public double getSoGioLamViec() {
+        return soGioLamViec;
+    }
+
+    public void setSoGioLamViec(double soGioLamViec) {
+        this.soGioLamViec = soGioLamViec;
+    }
+
     public String getTrangThai() {
         return trangThai;
     }
@@ -76,7 +90,9 @@ public class ChamCong {
                 ", ngayChamCong=" + ngayChamCong +
                 ", gioBatDau=" + gioBatDau +
                 ", gioketThuc=" + gioketThuc +
+                ", soGioLamViec=" + soGioLamViec +
                 ", trangThai='" + trangThai + '\'' +
                 '}';
     }
 }
+

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class LichSuLamViec {
     private String maNV;
     private String tenPB;
-    private java.sql.Date ngayChuyen; //  ngay chuyen phong ban
+    private Date ngayChuyen; //  ngay chuyen phong ban
 
     public LichSuLamViec(String maNV, String tenPB, Date ngayChuyen) {
         this.maNV = maNV;

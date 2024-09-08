@@ -5,8 +5,8 @@ import java.sql.Date;
 public class Phep {
     private int maPhep;
     private String maNV;
-    private java.sql.Date ngayBatDau;
-    private java.sql.Date ngayKetThuc;
+    private Date ngayBatDau;
+    private Date ngayKetThuc;
     private String loaiPhep;
     private String lyDo;
     private String trangThai;

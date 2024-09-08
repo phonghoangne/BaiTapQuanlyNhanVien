@@ -5,8 +5,8 @@ import java.sql.Date;
 public class Luong {
     private String maNV;
     private String mucLuong;
-    private java.sql.Date ngayBatDau;
-    private java.sql.Date ngayKetThuc;
+    private Date ngayBatDau;
+    private Date ngayKetThuc;
 
     public Luong(String maNV, String mucLuong, Date ngayBatDau, Date ngayKetThuc) {
         this.maNV = maNV;

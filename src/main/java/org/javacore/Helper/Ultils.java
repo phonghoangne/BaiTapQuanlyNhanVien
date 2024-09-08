@@ -1,13 +1,17 @@
 package org.javacore.Helper;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class Ultils {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/baitapjdbc2";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "1234";
+
+       private static String pattern = "MM-dd-yyyy";
     // cai de dki driver voi DriverManageger
     static {
         try {
@@ -33,4 +37,10 @@ public class Ultils {
             }
         }
     }
+
+    public static String formatDate(Date date)
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return  simpleDateFormat.format(date);
+    };
 }
